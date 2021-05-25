@@ -1,29 +1,88 @@
 import React from 'react'
-import {View, Text, StyleSheet, Button, Image, TextInput} from 'react-native'
+import {View, Text, StyleSheet, Button, Image, Alert, TextInput} from 'react-native'
+import { connect } from 'react-redux'
+import {users} from '../Helpers/data'
 
-export default class LoginForm extends React.Component 
+class LoginForm extends React.Component 
 {
     constructor(props){
         super(props)
         this.state = {
             username: '',
             password: '',
+            isFormValid: false,
+            user_token: 'undefined'
         }
     }
     
-    Login() {
-        console.log(this.state.username)
-        console.log(this.state.password)
+    componentDidUpdate(prevProps, prevState) {
+        if (this.state.username !== prevState.username || this.state.password !== prevState.password) {
+          this.validateForm()
+      }
+    }
+
+    validateForm = () => {
+        if (this.state.username !== "" && this.state.password !== "") {
+            this.setState({isFormValid: true})
+        }
+        else
+            this.setState({isFormValid: false})
+    }
+
+    _login() {
+        const found = users.find(element => element.username === this.state.username)
+        if (found){
+            this.state.user_token = found
+            if (this.state.password === this.state.user_token.password)
+            {
+                const action = { type: "LOGIN", value: this.state.user_token }
+                this.props.dispatch(action)
+            }
+            else 
+            { 
+                Alert.alert('Accès interdit', 'Mot de passe erroné')
+                const action = { type: "LOGOUT", value: false }
+                this.props.dispatch(action)
+            }}
+        else
+        {
+            Alert.alert('Accès interdit', 'Utilisateur introuvable')
+            const action = { type: "LOGOUT", value: false }
+            this.props.dispatch(action)
+        }
     }
 
     render(){
         return(
             <View style={styles.container}>
-                
-                <Text>Login Form</Text>
-                <TextInput value={this.state.username} onChangeText={(username) => this.setState({ username })} style={styles.inputContainer} placeholder='username'/>
-                <TextInput value={this.state.password} onChangeText={(password) => this.setState({ password })} style={styles.inputContainer} placeholder='Password' secureTextEntry={true}/>
-                <Button title={'Login'} style={styles.buttonContainer} onPress={() => this.Login()}/>
+                <Image source={require('../Images/logo.png')} style={styles.image}/>
+                <Text style={styles.textcontainer}>Scan Solutions</Text>
+                <TextInput 
+                    value={this.state.username} 
+                    onChangeText={(username) => this.setState({ username })} 
+                    style={styles.inputContainer} 
+                    placeholder="Nom d'utilisateur"
+                    autoFocus={true}
+                    ref={(input) => { this.firstTextInput = input }}
+                    blurOnSubmit={false}
+                    onSubmitEditing={() => { this.secondTextInput.focus() }}
+                    />
+                <TextInput 
+                    value={this.state.password} 
+                    onChangeText={(password) => this.setState({ password })} 
+                    style={styles.inputContainer} 
+                    placeholder='Mot de passe' 
+                    secureTextEntry={true}
+                    autoCapitalize='none'
+                    ref={(input) => { this.secondTextInput = input }}
+                    onSubmitEditing={() => this._login()}
+                    />
+                <Button 
+                    title={'Se connecter'} 
+                    style={styles.buttonContainer} 
+                    onPress={() => this._login()} 
+                    disabled={!this.state.isFormValid}
+                    />
             </View>
         )
     }
@@ -34,7 +93,12 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#00FFFF',
+    },
+    textcontainer:{
+        fontWeight: "bold",
+        fontSize: 24, 
+        marginBottom:40, 
+        color:"black",
     },
     buttonContainer: {
         alignItems: 'center',
@@ -43,18 +107,34 @@ const styles = StyleSheet.create({
     inputContainer: {
         alignItems: 'center',
         justifyContent: 'center',
-        borderColor: 'black',
+        borderColor: 'grey',
+        backgroundColor:'white',
+        borderRadius: 5,
         borderWidth: 1,
-        padding: 10,
-        marginBottom: 10,
-        width: 200,
-        height: 44,
+        padding: 8,
+        marginBottom: 15,
+        width: 300,
+        height: 55,
     },
     image:{
         width: 70,
         height: 80,
-        margin: 20,
+        margin: 10,
         resizeMode: 'stretch',
     }
-
   })
+
+  
+  const mapDispatchToProps = (dispatch) => {
+    return {
+      dispatch: (action) => { dispatch(action) }
+    }
+  }
+  
+  const mapStateToProps = (state) => {
+    return {
+        authenticated: state.authenticated,
+    }
+  }
+
+  export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)

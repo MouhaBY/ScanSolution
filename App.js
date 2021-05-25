@@ -1,10 +1,16 @@
-import { StatusBar } from 'expo-status-bar'
+import 'react-native-gesture-handler'
 import React from 'react'
-import LoginForm from './Components/LoginForm'
+import SearchNavigation from './Navigation/Navigation'
+import {Provider} from 'react-redux'
+import Store from './Store/configureStore'
 
 
-export default function App() {
-  return (
-    <LoginForm/>
-  )
+export default class App extends React.Component{
+  render(){
+    return (
+      <Provider store={Store}>
+        <SearchNavigation/>
+      </Provider>
+    )
+  }
 }
