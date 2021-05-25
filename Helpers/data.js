@@ -17,12 +17,7 @@ export const inventaires = [
   ]
 
   export const detailsInventaires = [
-    {id:1, name:'inventaire 1', date:'23/05/2021'},
-    {id:2, name:'inventaire 2', date:'23/05/2021'},
-    {id:3, name:'inventaire 3', date:'23/05/2021'},
-    {id:4, name:'inventaire 4', date:'23/05/2021'},
-    {id:5, name:'inventaire 5', date:'23/05/2021'},
-    {id:6, name:'inventaire 6', date:'23/05/2021'},
-    {id:7, name:'inventaire 7', date:'23/05/2021'},
-    {id:8, name:'inventaire 8', date:'23/05/2021'}
+    {id:1, location: 'A-1-1', barcode: '6191001', quantity: '11', inventory_id: '1', user_id: '2' },
+    {id:2, location: 'A-1-2', barcode: '6191002', quantity: '3', inventory_id: '2', user_id: '1' },
   ]
+
