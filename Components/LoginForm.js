@@ -62,9 +62,9 @@ class LoginForm extends React.Component
                     onChangeText={(username) => this.setState({ username })} 
                     style={styles.inputContainer} 
                     placeholder="Nom d'utilisateur"
-                    autoFocus={true}
+                    //autoFocus={true}
                     ref={(input) => { this.firstTextInput = input }}
-                    blurOnSubmit={false}
+                    //blurOnSubmit={false}
                     onSubmitEditing={() => { this.secondTextInput.focus() }}
                     />
                 <TextInput 

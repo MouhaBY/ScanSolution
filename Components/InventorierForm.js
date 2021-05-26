@@ -1,7 +1,7 @@
 import React from 'react'
-import { Text, View, StyleSheet, TextInput, Button, Alert, CheckBox, TouchableOpacity } from 'react-native'
+import { Text, View, StyleSheet, TextInput, Button, CheckBox, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
-import store from '../Store/configureStore'
+
 
 class InventorierForm extends React.Component
 {
@@ -36,20 +36,9 @@ class InventorierForm extends React.Component
         const { navigation, route } = this.props;
         const inventory_token_const = route.params.inventory_token
         this.setState({inventory_token: inventory_token_const})
-      }
-    
+    }
+
     _submit() {
-        const action = { 
-            type: "ADD_ROW_INV", 
-            value: {
-                location: this.state.location, 
-                barcode:this.state.barcode, 
-                quantity:this.state.quantity, 
-                inventory_id:this.state.inventory_token.id, 
-                user_id:this.props.user_token.id} 
-        }
-        this.props.dispatch(action)
-        //const stator = store.getState()
         this.state.inventoryRows.push(action.value)
         console.log(this.state.inventoryRows)
         this.setState({barcode:''})
@@ -60,7 +49,6 @@ class InventorierForm extends React.Component
         this.props.navigation.navigate("Détails", {inventory_token:item})
        }
 
-    
     render(){        
         return(
             <View style={{flex:1,}}>
@@ -166,23 +154,14 @@ const styles = StyleSheet.create({
     text_container:{
         margin:5,
         fontWeight:'bold',
-        
-        
     }
 })
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-      dispatch: (action) => { dispatch(action) }
-    }
-  }
 
 const mapStateToProps = (state) => {
     return {
         authenticated: state.authenticated,
         user_token: state.user_token,
-        inventoryRows: state.inventoryRows
     }
   }
 
-export default connect(mapStateToProps, mapDispatchToProps)(InventorierForm)
+export default connect(mapStateToProps)(InventorierForm)

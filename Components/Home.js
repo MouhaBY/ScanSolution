@@ -34,11 +34,15 @@ class Home extends React.Component
                     <Text style={styles.textButtonCOntainer}>Détails</Text>
                 </TouchableOpacity>
                 <TouchableOpacity 
+                style={[styles.buttonContainer, {backgroundColor:'#c7e0f4'}]}
+                onPress={() => {this.accessMenu("Configuration")}}>
+                    <Text style={styles.textButtonCOntainer}>Configuration</Text>
+                </TouchableOpacity>
+                <TouchableOpacity 
                 style={[styles.buttonContainer, {backgroundColor:'#D0312D'}]}
                 onPress={() => {this.logout()}}>
                     <Text style={styles.textButtonCOntainer}>Se déconnecter</Text>
                 </TouchableOpacity>
-                
             </View>
             <BottomBar style={{bottom: 0}}/>
             </View>
