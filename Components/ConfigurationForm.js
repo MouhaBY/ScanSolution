@@ -17,12 +17,12 @@ export default class ConfigurationForm extends React.Component
             <View style={styles.mainContainer}>
                 <Text style={styles.textContainer}>Configuration de base</Text>
                 <View style={styles.checkbox_container}>
-                    <Text>{this.state.withLocationVerification ? "Vérification d'emplacement " : "Sans vérification d'emplacement "}</Text>
                     <CheckBox value={this.state.withLocationVerification} onValueChange={(withLocationVerification) => this.setState({ withLocationVerification })} />
+                    <Text>{this.state.withLocationVerification ? "Vérification d'emplacement " : "Sans vérification d'emplacement "}</Text>
                 </View>
                 <View style={styles.checkbox_container}>
-                    <Text>{this.state.withBarcodeVerification ? "Vérification d'articles " : "Sans vérification d'articles "}</Text>
                     <CheckBox value={this.state.withBarcodeVerification} onValueChange={(withBarcodeVerification) => this.setState({ withBarcodeVerification })} />
+                    <Text>{this.state.withBarcodeVerification ? "Vérification d'articles " : "Sans vérification d'articles "}</Text>
                 </View>
             </View>
         )
@@ -37,9 +37,10 @@ const styles = StyleSheet.create(
         textContainer:{
             justifyContent:'center',
             alignItems:'center',
+            textAlign:'center',
             fontWeight:'bold',
             fontSize:20,
-            margin:15,
+            margin:20,
         },
         mainList:{
             flex:1,

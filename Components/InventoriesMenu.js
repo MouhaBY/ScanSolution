@@ -49,6 +49,7 @@ const styles = StyleSheet.create(
             fontWeight:'bold',
             fontSize:20,
             margin:15,
+            padding:5
         },
         mainList:{
             flex:1,
@@ -59,8 +60,8 @@ const styles = StyleSheet.create(
             borderColor:'white',
             borderWidth: 1,
             borderRadius: 5,
-            margin: 5,
-            backgroundColor: "#0078d4"
+            margin: 1,
+            backgroundColor: "#2196F3"
         },
     }
 )

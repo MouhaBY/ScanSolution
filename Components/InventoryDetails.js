@@ -35,31 +35,29 @@ export default class InventoryDetails extends React.Component {
         <TouchableOpacity 
         style={styles.table_row}
         onLongPress={this._deleteRow}>
-            <Text style={[styles.table_row_txt, {width: "40%"}]}>{item.location}</Text>
+            <Text style={[styles.table_row_txt, {width: "35%"}]}>{item.location}</Text>
             <Text style={[styles.table_row_txt, {width: "40%"}]}>{item.barcode}</Text>
-            <Text style={[styles.table_row_txt, {width: "20%"}]}>{item.quantity}</Text>
+            <Text style={[styles.table_row_txt, {width: "25%"}]}>{item.quantity}</Text>
         </TouchableOpacity>
         )
     
     render(){
         return(
-            <View style={{flex:1,backgroundColor:'white',}} >
+            <View style={styles.main_container} >
                 <TouchableOpacity style={styles.top_container} onPress={() => this.props.navigation.goBack()}>
                     <Text style={styles.title_container}>{"Détails de l'inventaire : " + this.state.inventory_token.name}</Text>
                     <Text style={{color:'white'}}>{"Id de l'inventaire " + this.state.inventory_token.id + " | Date du "+ this.state.inventory_token.date}</Text>
                 </TouchableOpacity>
                 <View style={{alignItems: 'center', justifyContent: 'center'}}>
                     <View style={styles.table_header}>
-                        <Text style={[styles.table_header_txt, {width: "40%"}]}>Emplacement</Text>
+                        <Text style={[styles.table_header_txt, {width: "35%"}]}>Emplacement</Text>
                         <Text style={[styles.table_header_txt, {width: "40%"}]}>Code à barre</Text>
-                        <Text style={[styles.table_header_txt, {width: "20%"}]}>Quantité</Text>
+                        <Text style={[styles.table_header_txt, {width: "25%"}]}>Quantité</Text>
                     </View>
                     <FlatList
                         data={this.state.inventorylist}
                         keyExtractor={(item) => item.id.toString()}
-                        //numColumns={2}
                         renderItem={this._renderItem}
-                        ListHeaderComponent={this._listHeader}
                         >
                     </FlatList>
                 </View>
@@ -69,6 +67,10 @@ export default class InventoryDetails extends React.Component {
 }
 
 const styles = StyleSheet.create({
+    main_container:{
+        flex:1,
+        backgroundColor:'white',
+    },
     top_container:{
         backgroundColor:'#2196F3',
         justifyContent:'center',
@@ -85,12 +87,6 @@ const styles = StyleSheet.create({
         marginTop:3, 
         backgroundColor:'#71afe5'
     },
-    table_row:{
-        flexDirection: "row", 
-        height: 40, 
-        alignItems:"center",
-        justifyContent:'center',
-    },
     table_header_txt:{
         fontWeight:'bold', 
         textAlign:"center", 
@@ -99,12 +95,17 @@ const styles = StyleSheet.create({
         fontSize:16, 
         height:40
     },
+    table_row:{
+        flexDirection: "row", 
+        height: 40, 
+        alignItems:"center",
+        justifyContent:'center',
+    },
     table_row_txt:{
-        //padding:5, 
+        padding:5, 
         height:35,
         textAlign:"center",
-        justifyContent:'center',
         fontSize:14, 
         backgroundColor:'#eff6fc',
-    },
+    },    
 })

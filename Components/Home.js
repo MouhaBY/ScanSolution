@@ -24,12 +24,12 @@ class Home extends React.Component
             <View style={{flex:1}}>
             <View style={{flex:1, justifyContent: 'center'}}>
                 <TouchableOpacity 
-                style={[styles.buttonContainer, {backgroundColor:'#0078d4'}]}
+                style={[styles.buttonContainer, {backgroundColor:'#2196F3'}]}
                 onPress={() => {this.accessMenu("Inventaires")}}>
                     <Text style={styles.textButtonCOntainer}>Inventaire</Text>
                 </TouchableOpacity>
                 <TouchableOpacity 
-                style={[styles.buttonContainer, {backgroundColor:'#c7e0f4'}]}
+                style={[styles.buttonContainer, {backgroundColor:'#757575'}]}
                 onPress={() => {this.accessMenu("Détails Inventaires")}}>
                     <Text style={styles.textButtonCOntainer}>Détails</Text>
                 </TouchableOpacity>

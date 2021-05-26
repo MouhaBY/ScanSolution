@@ -27,8 +27,8 @@ class InventoriesDetails extends React.Component
                     <TouchableOpacity
                     onPress = {() => this.accessInventoryDetails(item)} 
                     style={styles.mainInventory}>
-                        <Text style={{fontWeight:'bold', color:'#005a9e'}}>{item.name + " "}</Text>
-                        <Text style={{color:'#005a9e'}}>{"Date " + item.date}</Text>
+                        <Text style={{fontWeight:'bold', color:'#eeeeee'}}>{item.name + " "}</Text>
+                        <Text style={{color:'#eeeeee'}}>{"Date " + item.date}</Text>
                     </TouchableOpacity>
                 )}>
                 </FlatList>
@@ -50,16 +50,15 @@ const styles = StyleSheet.create(
             alignItems:'center',
             fontWeight:'bold',
             fontSize:20,
-            margin:15,
+            margin:10,
+            padding:5
         },
         mainInventory:{
             height: 65,
             padding:10,
-            borderColor:'white',
-            borderWidth: 1,
             borderRadius: 5,
-            margin: 5,
-            backgroundColor: "#deecf9"
+            margin: 1,
+            backgroundColor: "#757575"
         },
     }
 )
