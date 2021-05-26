@@ -17,7 +17,28 @@ export const inventaires = [
   ]
 
   export const detailsInventaires = [
-    {id:1, location: 'A-1-1', barcode: '6191001', quantity: '11', inventory_id: '1', user_id: '2' },
-    {id:2, location: 'A-1-2', barcode: '6191002', quantity: '3', inventory_id: '2', user_id: '1' },
+    {id:1,  location: 'A-1-1', barcode: '6191001', quantity: '11', inventory_id: '1', user_id: '2' },
+    {id:2,  location: 'A-1-2', barcode: '6191002', quantity: '3', inventory_id: '2', user_id: '1' },
+    {id:3,  location: 'A-1-1', barcode: '6191001', quantity: '11', inventory_id: '1', user_id: '2' },
+    {id:4,  location: 'A-1-2', barcode: '6191002', quantity: '3', inventory_id: '2', user_id: '1' },
+    {id:5,  location: 'A-1-1', barcode: '6191001', quantity: '11', inventory_id: '1', user_id: '2' },
+    {id:6,  location: 'A-1-2', barcode: '6191002', quantity: '3', inventory_id: '2', user_id: '1' },
+    {id:7,  location: 'A-1-1', barcode: '6191001', quantity: '11', inventory_id: '1', user_id: '2' },
+    {id:8,  location: 'A-1-2', barcode: '6191002', quantity: '3', inventory_id: '2', user_id: '1' },
+    {id:9,  location: 'A-1-1', barcode: '6191001', quantity: '11', inventory_id: '1', user_id: '2' },
+    {id:10, location: 'A-1-2', barcode: '6191002', quantity: '3', inventory_id: '1', user_id: '1' },
+    {id:11, location: 'A-1-1', barcode: '6191001', quantity: '11', inventory_id: '1', user_id: '2' },
+    {id:12, location: 'A-1-2', barcode: '6191002', quantity: '3', inventory_id: '1', user_id: '1' },
+    {id:13, location: 'A-1-1', barcode: '6191001', quantity: '11', inventory_id: '1', user_id: '2' },
+    {id:14, location: 'A-1-2', barcode: '6191002', quantity: '3', inventory_id: '1', user_id: '1' },
+    {id:15, location: 'A-1-1', barcode: '6191001', quantity: '11', inventory_id: '1', user_id: '2' },
+    {id:16, location: 'A-1-2', barcode: '6191002', quantity: '3', inventory_id: '1', user_id: '1' },
+    {id:17, location: 'A-1-2', barcode: '6191002', quantity: '3', inventory_id: '1', user_id: '1' },
+    {id:18, location: 'A-1-1', barcode: '6191001', quantity: '11', inventory_id: '1', user_id: '2' },
+    {id:19, location: 'A-1-2', barcode: '6191002', quantity: '3', inventory_id: '1', user_id: '1' },
+    {id:20, location: 'A-1-1', barcode: '6191001', quantity: '11', inventory_id: '1', user_id: '2' },
+    {id:21, location: 'A-1-2', barcode: '6191002', quantity: '3', inventory_id: '1', user_id: '1' },
+    {id:22, location: 'A-1-1', barcode: '6191001', quantity: '11', inventory_id: '1', user_id: '2' },
+    {id:23, location: 'A-1-2', barcode: '6191002', quantity: '3', inventory_id: '1', user_id: '1' },
   ]
 

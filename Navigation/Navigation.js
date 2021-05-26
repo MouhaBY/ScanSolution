@@ -8,6 +8,7 @@ import InventoriesMenu from '../Components/InventoriesMenu'
 import InventoriesDetailsMenu from '../Components/InventoriesDetailsMenu'
 import InventorierForm from '../Components/InventorierForm'
 import InventoryDetails from '../Components/InventoryDetails'
+import ConfigurationForm from '../Components/ConfigurationForm'
 
 import { connect } from 'react-redux'
 import store from '../Store/configureStore'
@@ -28,6 +29,7 @@ const SearchNavigation = () => {
                     <Stack.Screen name="Détails Inventaires" component={InventoriesDetailsMenu}/>
                     <Stack.Screen name="Inventorier" component={InventorierForm}/>
                     <Stack.Screen name="Détails" component={InventoryDetails}/>
+                    <Stack.Screen name="Configuration" component={ConfigurationForm}/>
                 </Stack.Navigator>
             </NavigationContainer>
         )
