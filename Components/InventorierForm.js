@@ -33,13 +33,13 @@ class InventorierForm extends React.Component
     }
 
     componentDidMount(){
-        const { navigation, route } = this.props;
-        const inventory_token_const = route.params.inventory_token
+        //const { navigation, route } = this.props;
+        const inventory_token_const = this.props.route.params.inventory_token
         this.setState({inventory_token: inventory_token_const})
     }
 
     _submit() {
-        this.state.inventoryRows.push(action.value)
+        this.state.inventoryRows.push()
         console.log(this.state.inventoryRows)
         this.setState({barcode:''})
         this.setState({quantity:'1'})
@@ -58,7 +58,7 @@ class InventorierForm extends React.Component
                 </TouchableOpacity>
                 <View style={styles.checkbox_container}>
                     <Text>{this.state.withQuantity ? "Inventaire quantitatif" : "Inventaire unitaire"}</Text>
-                    <CheckBox value={this.state.withQuantity} onValueChange={(withQuantity) => this.setState({ withQuantity })} />
+                    <CheckBox style={{margin:5}} value={this.state.withQuantity} onValueChange={(withQuantity) => this.setState({ withQuantity })} />
                 </View>
                 <View style={styles.main_container}>
                         <Text style={styles.text_container}>Code emplacement</Text>
@@ -128,11 +128,6 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
         marginTop:20,
-    },
-    bottom_container:{
-        height:50,
-        backgroundColor:'#0078d4',
-        padding:20,
     },
     input_container:{
         alignItems: 'center',

@@ -30,12 +30,12 @@ class LoginForm extends React.Component
     }
 
     _login() {
-        const found = users.find(element => element.username === this.state.username)
-        if (found){
-            this.state.user_token = found
-            if (this.state.password === this.state.user_token.password)
+        const user_found = users.find(element => element.username === this.state.username)
+        if (user_found){
+            this.setState({user_token: user_found})
+            if (this.state.password === user_found.password)
             {
-                const action = { type: "LOGIN", value: this.state.user_token }
+                const action = { type: "LOGIN", value: user_found }
                 this.props.dispatch(action)
             }
             else 
