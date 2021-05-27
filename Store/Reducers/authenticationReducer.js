@@ -1,5 +1,6 @@
 const initialState = { authenticated: false }
 
+
 function authReducer(state = initialState, action) {
   let nextState
   
@@ -20,7 +21,6 @@ function authReducer(state = initialState, action) {
     default:
       return state
   }
-  
 }
 
 export default authReducer

@@ -1,6 +1,7 @@
 import React from 'react'
 import {createStackNavigator} from "@react-navigation/stack"
 import {NavigationContainer} from "@react-navigation/native"
+import { connect } from 'react-redux'
 
 import LoginForm from '../Components/LoginForm'
 import Home from '../Components/Home'
@@ -9,8 +10,6 @@ import InventoriesDetailsMenu from '../Components/InventoriesDetailsMenu'
 import InventorierForm from '../Components/InventorierForm'
 import InventoryDetails from '../Components/InventoryDetails'
 import ConfigurationForm from '../Components/ConfigurationForm'
-
-import { connect } from 'react-redux'
 import store from '../Store/configureStore'
 
 

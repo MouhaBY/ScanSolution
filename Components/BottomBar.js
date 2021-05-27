@@ -6,7 +6,6 @@ class BottomBar extends React.Component
 {
     constructor(props){
         super(props)
-
     }
 
     render(){
@@ -16,13 +15,13 @@ class BottomBar extends React.Component
             </View>
         )
     }
-
 }
 
 const styles = StyleSheet.create({
         main_container:{
             backgroundColor:'#0078d4',
-            height:25,
+            height:30,
+            justifyContent:'center'
         },
         text_container:{
             color:'white',
@@ -34,7 +33,6 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
     return {
-      authenticated: state.authenticated,
       user_token: state.user_token
     }
 }

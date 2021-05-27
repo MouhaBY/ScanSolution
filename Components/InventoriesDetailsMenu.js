@@ -1,10 +1,9 @@
 import React from 'react'
 import {View, Text, StyleSheet, Button, Image, Alert, TextInput, FlatList, TouchableOpacity} from 'react-native'
-import {connect} from 'react-redux'
 import {inventaires} from '../Helpers/data'
 
 
-class InventoriesDetails extends React.Component 
+class InventoriesDetailsMenu extends React.Component 
 {
     constructor(props){
         super(props)
@@ -63,4 +62,4 @@ const styles = StyleSheet.create(
     }
 )
 
-export default InventoriesDetails
+export default InventoriesDetailsMenu

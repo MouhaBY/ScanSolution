@@ -77,12 +77,16 @@ class InventorierForm extends React.Component
         }
     }
 
+    _reset_form_values(){
+        this.setState({barcode: ''})
+        this.setState({quantity: '1'})
+    }
+
     _submit() {
         const to_send = {id:global.tab_id++, location:this.state.location, barcode:this.state.barcode, quantity:this.state.quantity, inventory_id:this.state.inventory_token.id, user_id:this.props.user_token.id}
         global.tab.push(to_send)
-        console.log(tab)
-        this.setState({barcode: ''})
-        this.setState({quantity: '1'})
+        //console.log(tab)
+        this._reset_form_values()
     }
 
     accessInventoryDetails = (item) => {

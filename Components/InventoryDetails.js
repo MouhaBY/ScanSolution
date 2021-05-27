@@ -25,17 +25,22 @@ export default class InventoryDetails extends React.Component {
         this.setState({inventorylist: inventorylist_const})
       }
 
-    _deleteRow = (item) => {
-        Alert.alert('Supprimer', 'Etes vous sur de supprimer cette ligne ?', 
+    _deleteRow(item_to_delete) {
+        Alert.alert('Supprimer', 'Êtes vous sur de supprimer cette ligne ?', 
         [   { text: 'Annuler',},
-            { text: 'Confirmer', onPress: () => {}},
+            { text: 'Confirmer', onPress: () => {
+                let newData = global.tab.filter((item) => item.id.toString() !== item_to_delete.toString())
+                global.tab = newData
+                this.componentDidMount()
+                }
+            },
         ])
     }
 
     _renderItem = ({item}) => (
         <TouchableOpacity 
         style={styles.table_row}
-        onLongPress={this._deleteRow}>
+        onLongPress={() => {this._deleteRow(item.id)}}>
             <Text style={[styles.table_row_txt, {width: "35%"}]}>{item.location}</Text>
             <Text style={[styles.table_row_txt, {width: "40%"}]}>{item.barcode}</Text>
             <Text style={[styles.table_row_txt, {width: "25%"}]}>{item.quantity}</Text>
