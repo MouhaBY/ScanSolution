@@ -75,8 +75,8 @@ class LoginForm extends React.Component
                     secureTextEntry={true}
                     autoCapitalize='none'
                     ref={(input) => { this.secondTextInput = input }}
-                    onSubmitEditing={() => this._login()}
-                    />
+                    onSubmitEditing={() => { if (this.state.username !== "" && this.state.password !== "") {this._login()} }}
+                />
                 <Button 
                     title={'Se connecter'} 
                     style={styles.buttonContainer} 

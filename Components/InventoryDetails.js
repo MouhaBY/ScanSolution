@@ -1,6 +1,7 @@
 import React from 'react'
 import { Text, View, StyleSheet, TouchableOpacity, FlatList, Alert } from 'react-native'
-import {detailsInventaires} from '../Helpers/data'
+import '../global'
+
 
 export default class InventoryDetails extends React.Component {
     constructor(props){
@@ -12,7 +13,7 @@ export default class InventoryDetails extends React.Component {
     }
 
     get_inventory_details(id_inv){
-        const newData = detailsInventaires.filter((item) => item.inventory_id === id_inv)
+        const newData = global.tab.filter((item) => item.inventory_id.toString() === id_inv.toString())
         return(newData)
     }
 
@@ -20,7 +21,7 @@ export default class InventoryDetails extends React.Component {
         const { navigation, route } = this.props;
         const inventory_token_const = route.params.inventory_token
         this.setState({inventory_token: inventory_token_const})
-        const inventorylist_const = this.get_inventory_details(inventory_token_const.id.toString())
+        const inventorylist_const = this.get_inventory_details(inventory_token_const.id)
         this.setState({inventorylist: inventorylist_const})
       }
 

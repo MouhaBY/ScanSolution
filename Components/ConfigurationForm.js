@@ -1,5 +1,6 @@
 import React from 'react'
 import {View, Text, StyleSheet, Button, Image, Alert, TextInput, FlatList, CheckBox} from 'react-native'
+import '../global'
 
 
 export default class ConfigurationForm extends React.Component 
@@ -7,9 +8,16 @@ export default class ConfigurationForm extends React.Component
     constructor(props){
         super(props)
         this.state = {
-            withLocationVerification: false,
-            withBarcodeVerification: false,
+            withLocationVerification: global.withLocationVerification,
+            withBarcodeVerification: global.withBarcodeVerification,
         }
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (this.state.withLocationVerification !== prevState.withLocationVerification || this.state.withBarcodeVerification !== prevState.withBarcodeVerification) {
+          global.withBarcodeVerification = this.state.withBarcodeVerification
+          global.withLocationVerification = this.state.withLocationVerification
+      }
     }
 
     render(){
