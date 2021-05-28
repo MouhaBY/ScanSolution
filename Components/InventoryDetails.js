@@ -54,7 +54,7 @@ export default class InventoryDetails extends React.Component {
                     <Text style={styles.title_container}>{"Détails de l'inventaire : " + this.state.inventory_token.name}</Text>
                     <Text style={{color:'white'}}>{"Id de l'inventaire " + this.state.inventory_token.id + " | Date du "+ this.state.inventory_token.date}</Text>
                 </TouchableOpacity>
-                <View style={{alignItems: 'center', justifyContent: 'center'}}>
+                <View style={{alignItems: 'center', justifyContent: 'center', height:"80%"}}>
                     <View style={styles.table_header}>
                         <Text style={[styles.table_header_txt, {width: "35%"}]}>Emplacement</Text>
                         <Text style={[styles.table_header_txt, {width: "40%"}]}>Code à barre</Text>
@@ -76,6 +76,7 @@ const styles = StyleSheet.create({
     main_container:{
         flex:1,
         backgroundColor:'white',
+        marginBottom:0
     },
     top_container:{
         backgroundColor:'#2196F3',

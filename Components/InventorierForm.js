@@ -1,5 +1,6 @@
 import React from 'react'
 import { Text, View, StyleSheet, TextInput, Button, CheckBox, TouchableOpacity, Alert, Keyboard, TouchableWithoutFeedback } from 'react-native'
+import { color } from 'react-native-reanimated'
 import { connect } from 'react-redux'
 import '../global'
 
@@ -17,6 +18,7 @@ class InventorierForm extends React.Component
             inventoryRows: [],
             message_barcode: '',
             message_location: '',
+            message:'',
             withQuantity: global.withQuantity,
             withLocationVerification : global.withLocationVerification,
             withBarcodeVerification : global.withBarcodeVerification
@@ -27,19 +29,23 @@ class InventorierForm extends React.Component
         if (this.state.withQuantity !== prevState.withQuantity){
             global.withQuantity = this.state.withQuantity
         }
-        if (this.state.location !== prevState.location || this.state.barcode !== prevState.barcode) {
-            this.setState({message_location: ''})
-            this.setState({message_barcode: ''})
+        if (this.state.location !== prevState.location || this.state.barcode !== prevState.barcode || this.state.quantity !== prevState.quantity){
+            if(this.state.location !== '' && this.state.barcode !== '') {
+                this.setState({message: ''})
+                this.setState({message_location: ''})
+                this.setState({message_barcode: ''})
+            }
             this.validateForm()
-      }
+        }
     }
 
     validateForm = () => {
-        if (this.state.location !== "" && this.state.barcode !== "") {
+        if (this.state.location !== "" && this.state.barcode !== "" && this.state.quantity > 0) {
             this.setState({isFormValid: true})
         }
-        else
+        else{
             this.setState({isFormValid: false})
+        }
     }
 
     componentDidMount(){
@@ -63,13 +69,14 @@ class InventorierForm extends React.Component
         if (this.state.withLocationVerification){
             if (!this._verify_location()){
                 to_submit = false
-                this.setState({message_location: 'Emplacement non reconnu'})
+                this.setState({message_location: 'Emplacement ' + this.state.location + ' non reconnu'})
             }
         }
         if (this.state.withBarcodeVerification){
             if(!this._verify_barcode()){
                 to_submit = false
-                this.setState({message_barcode: 'Article non reconnu'})
+                this.setState({message_barcode: 'Article ' + this.state.barcode +  ' non reconnu'})
+                this.setState({barcode: ''})
             }
         }
         if (to_submit){
@@ -83,8 +90,9 @@ class InventorierForm extends React.Component
     }
 
     _submit() {
-        const to_send = {id:global.tab_id++, location:this.state.location, barcode:this.state.barcode, quantity:this.state.quantity, inventory_id:this.state.inventory_token.id, user_id:this.props.user_token.id}
+        const to_send = {id:global.tab_id++, location:this.state.location, barcode:this.state.barcode, quantity:Number(this.state.quantity), inventory_id:this.state.inventory_token.id, user_id:this.props.user_token.id}
         global.tab.push(to_send)
+        this.setState({message: 'Article ' + this.state.barcode+' Enregistré'})
         this._reset_form_values()
     }
 
@@ -110,6 +118,7 @@ class InventorierForm extends React.Component
                         onChangeText={(location) => this.setState({ location })} 
                         style={styles.input_container} 
                         autoFocus={true}
+                        onFocus={() => this.setState({location: ''})}
                         placeholder= "Emplacement"
                         //blurOnSubmit={false}
                         onSubmitEditing={() => { this.secondTextInput.focus() }}/>
@@ -120,6 +129,7 @@ class InventorierForm extends React.Component
                         ref={(input) => { this.secondTextInput = input }}
                         onChangeText={(barcode) => this.setState({ barcode })} 
                         style={styles.input_container} 
+                        onFocus={() => this.setState({barcode: ''})}
                         blurOnSubmit={false}
                         placeholder= "Code à barre"
                         onSubmitEditing={() => {
@@ -129,7 +139,7 @@ class InventorierForm extends React.Component
                         />
                         <Text style={styles.error_message}>{this.state.message_barcode}</Text>
                         {this.state.withQuantity &&
-                        <View style={{alignItems:'center', marginBottom:20}}>
+                        <View style={{alignItems:'center', marginBottom:5}}>
                             <Text style={styles.text_container}>Quantité</Text>
                             <TextInput
                                 value={this.state.quantity} 
@@ -140,7 +150,7 @@ class InventorierForm extends React.Component
                                 placeholder= "Quantité"
                                 blurOnSubmit={false}
                                 onSubmitEditing={() => {
-                                    if (this.state.location !== "" && this.state.barcode !== "") {
+                                    if (this.state.location !== "" && this.state.barcode !== "" && this.state.quantity >0) {
                                         this._verify_exists()
                                         this.secondTextInput.focus()
                                     }
@@ -148,6 +158,7 @@ class InventorierForm extends React.Component
                             />
                         </View>
                         }
+                        <Text style={{color:'green', margin:1}}>{this.state.message}</Text>
                         <Button 
                         title='                                   submit                                   '
                         disabled={!this.state.isFormValid}
@@ -189,7 +200,7 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         borderWidth: 1,
         padding: 8,
-        marginBottom: 2,
+        marginBottom: 3,
         width: "80%",
         height: 40,
     },
@@ -199,12 +210,12 @@ const styles = StyleSheet.create({
         fontSize:20
     },
     text_container:{
-        margin:5,
+        margin:3,
         fontWeight:'bold',
     },
     error_message:{
         color:'red', 
-        marginBottom:3
+        marginBottom:1
     }
 })
 
