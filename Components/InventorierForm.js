@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, StyleSheet, TextInput, Button, CheckBox, TouchableOpacity, Alert } from 'react-native'
+import { Text, View, StyleSheet, TextInput, Button, CheckBox, TouchableOpacity, Alert, Keyboard, TouchableWithoutFeedback } from 'react-native'
 import { connect } from 'react-redux'
 import '../global'
 
@@ -85,7 +85,6 @@ class InventorierForm extends React.Component
     _submit() {
         const to_send = {id:global.tab_id++, location:this.state.location, barcode:this.state.barcode, quantity:this.state.quantity, inventory_id:this.state.inventory_token.id, user_id:this.props.user_token.id}
         global.tab.push(to_send)
-        //console.log(tab)
         this._reset_form_values()
     }
 
@@ -110,9 +109,9 @@ class InventorierForm extends React.Component
                         value={this.state.location} 
                         onChangeText={(location) => this.setState({ location })} 
                         style={styles.input_container} 
-                        //autoFocus={true}
+                        autoFocus={true}
                         placeholder= "Emplacement"
-                        blurOnSubmit={false}
+                        //blurOnSubmit={false}
                         onSubmitEditing={() => { this.secondTextInput.focus() }}/>
                         <Text style={styles.error_message}>{this.state.message_location}</Text>
                         <Text style={styles.text_container}>Code article</Text>
@@ -130,7 +129,7 @@ class InventorierForm extends React.Component
                         />
                         <Text style={styles.error_message}>{this.state.message_barcode}</Text>
                         {this.state.withQuantity &&
-                        <View style={{alignItems:'center', marginBottom:25}}>
+                        <View style={{alignItems:'center', marginBottom:20}}>
                             <Text style={styles.text_container}>Quantité</Text>
                             <TextInput
                                 value={this.state.quantity} 
@@ -168,19 +167,19 @@ const styles = StyleSheet.create({
         backgroundColor:'#2196F3', 
         justifyContent:'center', 
         alignItems:'center', 
-        height:70
+        height:50
     },
     checkbox_container:{
         height:20,
         flexDirection:'row',
         alignItems:'center', 
         justifyContent:'flex-end', 
-        margin:10
+        margin:5
     },
     main_container:{
         justifyContent:'center',
         alignItems:'center',
-        marginTop:20,
+        marginTop:10,
     },
     input_container:{
         alignItems: 'center',
@@ -191,8 +190,8 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         padding: 8,
         marginBottom: 2,
-        width: 350,
-        height: 55,
+        width: "80%",
+        height: 40,
     },
     title_container:{
         fontWeight:'bold',
@@ -205,7 +204,7 @@ const styles = StyleSheet.create({
     },
     error_message:{
         color:'red', 
-        marginBottom:13
+        marginBottom:3
     }
 })
 

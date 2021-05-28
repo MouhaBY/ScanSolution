@@ -54,8 +54,8 @@ class Home extends React.Component
 const styles = StyleSheet.create({
     buttonContainer:{
         justifyContent:'center', 
-        marginHorizontal:10, 
-        height: 70, 
+        marginHorizontal:20, 
+        height: 55, 
         marginTop: 20, 
         borderRadius: 5 
     },

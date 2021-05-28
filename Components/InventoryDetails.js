@@ -41,9 +41,9 @@ export default class InventoryDetails extends React.Component {
         <TouchableOpacity 
         style={styles.table_row}
         onLongPress={() => {this._deleteRow(item.id)}}>
-            <Text style={[styles.table_row_txt, {width: "35%"}]}>{item.location}</Text>
+            <Text style={[styles.table_row_txt, {width: "40%"}]}>{item.location}</Text>
             <Text style={[styles.table_row_txt, {width: "40%"}]}>{item.barcode}</Text>
-            <Text style={[styles.table_row_txt, {width: "25%"}]}>{item.quantity}</Text>
+            <Text style={[styles.table_row_txt, {width: "20%"}]}>{item.quantity}</Text>
         </TouchableOpacity>
         )
     
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
         backgroundColor:'#2196F3',
         justifyContent:'center',
         alignItems:'center',
-        height:70
+        height:50
     },
     title_container:{
         fontWeight:'bold',

@@ -1,5 +1,5 @@
 import React from 'react'
-import {View, Text, StyleSheet, Button, Image, Alert, TextInput} from 'react-native'
+import {View, Text, StyleSheet, Button, Image, Alert, TextInput, Keyboard, TouchableWithoutFeedback} from 'react-native'
 import { connect } from 'react-redux'
 import {users} from '../Helpers/data'
 
@@ -55,15 +55,18 @@ class LoginForm extends React.Component
 
     render(){
         return(
-            <View style={styles.container}>
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss} >
+            <View 
+            style={styles.container}>
                 <Image source={require('../Images/logo.png')} style={styles.image}/>
                 <Text style={styles.textcontainer}>Scan Solutions</Text>
                 <TextInput 
                     value={this.state.username} 
                     onChangeText={(username) => this.setState({ username })} 
+                    //onFocus={Keyboard.dismiss()}
                     style={styles.inputContainer} 
                     placeholder="Nom d'utilisateur"
-                    //autoFocus={true}
+                    autoFocus={true}
                     ref={(input) => { this.firstTextInput = input }}
                     //blurOnSubmit={false}
                     onSubmitEditing={() => { this.secondTextInput.focus() }}
@@ -85,6 +88,7 @@ class LoginForm extends React.Component
                     disabled={!this.state.isFormValid}
                     />
             </View>
+            </TouchableWithoutFeedback>
         )
     }
 }
@@ -114,8 +118,8 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         padding: 8,
         marginBottom: 15,
-        width: 300,
-        height: 55,
+        width: "80%",
+        height: 50,
     },
     image:{
         width: 70,
