@@ -11,9 +11,9 @@ export const inventaires = [
   ]
 
   export const users = [
-    {id:1, username:'Test', password:'test', contact:'Mohammed BY'}, 
-    {id:2, username:'Mouha', password:'123', contact:'Mouha BEN YAHIA'},
-    {id:3, username:'123', password:'1234', contact:'12345'},
+    {id:1, username:'Test', password:'test', contact:'Mohammed BY', isAdmin:true}, 
+    {id:2, username:'Mouha', password:'123', contact:'Mouha BEN YAHIA', isAdmin:false},
+    {id:3, username:'123', password:'1234', contact:'12345', isAdmin:false},
   ]
 
   export const detailsInventaires = [

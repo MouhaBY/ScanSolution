@@ -11,6 +11,7 @@ import InventorierForm from '../Components/InventorierForm'
 import InventoryDetails from '../Components/InventoryDetails'
 import ConfigurationForm from '../Components/ConfigurationForm'
 import store from '../Store/configureStore'
+import SyncButton from '../Components/SyncButton'
 
 
 const Stack = createStackNavigator()
@@ -23,7 +24,7 @@ const SearchNavigation = () => {
         return(
             <NavigationContainer>             
                 <Stack.Navigator>
-                    <Stack.Screen name="Home" component={Home}/>
+                    <Stack.Screen name="Home" component={Home} options={{headerRight:()=>(<SyncButton/>)}}/>
                     <Stack.Screen name="Inventaires" component={InventoriesMenu}/>
                     <Stack.Screen name="Détails Inventaires" component={InventoriesDetailsMenu}/>
                     <Stack.Screen name="Inventorier" component={InventorierForm}/>

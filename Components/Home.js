@@ -22,7 +22,6 @@ class Home extends React.Component
     render(){
         return(
             <View style={{flex:1}}>
-                <Button title = {'Synchroniser'} onPress={()=>{Alert.alert('Synchronisation', 'Synchronisation effectuée')}}/>
                 <View style={{flex:1, justifyContent: 'center'}}>
                     <TouchableOpacity 
                     style={[styles.buttonContainer, {backgroundColor:'#2196F3'}]}
@@ -34,11 +33,13 @@ class Home extends React.Component
                     onPress={() => {this.accessMenu("Détails Inventaires")}}>
                         <Text style={styles.textButtonContainer}>Détails</Text>
                     </TouchableOpacity>
+                    {this.props.user_token.isAdmin &&
                     <TouchableOpacity 
                     style={[styles.buttonContainer, {backgroundColor:'#c7e0f4'}]}
                     onPress={() => {this.accessMenu("Configuration")}}>
                         <Text style={styles.textButtonContainer}>Configuration</Text>
                     </TouchableOpacity>
+                    }
                     <TouchableOpacity 
                     style={[styles.buttonContainer, {backgroundColor:'#D0312D'}]}
                     onPress={() => {this.logout()}}>
@@ -75,7 +76,7 @@ const mapDispatchToProps = (dispatch) => {
   const mapStateToProps = (state) => {
     return {
         authenticated: state.authenticated,
-        
+        user_token: state.user_token
     }
   }
 

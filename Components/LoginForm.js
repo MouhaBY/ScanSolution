@@ -31,26 +31,36 @@ class LoginForm extends React.Component
     }
 
     _login() {
-        const user_found = users.find(element => element.username === this.state.username)
-        if (user_found){
-            this.setState({user_token: user_found})
-            if (this.state.password === user_found.password)
+        if (this.state.username !== "" && this.state.password !== "") {
+            const user_found = users.find(element => element.username === this.state.username)
+            if (user_found){
+                this.setState({user_token: user_found})
+                if (this.state.password === user_found.password)
+                {
+                    const action = { type: "LOGIN", value: user_found }
+                    this.props.dispatch(action)
+                }
+                else 
+                { 
+                    Alert.alert('Accès interdit', 'Mot de passe erroné')
+                    const action = { type: "LOGOUT", value: false }
+                    this.props.dispatch(action)
+                }}
+            else
             {
-                const action = { type: "LOGIN", value: user_found }
-                this.props.dispatch(action)
-            }
-            else 
-            { 
-                Alert.alert('Accès interdit', 'Mot de passe erroné')
+                Alert.alert('Accès interdit', 'Utilisateur introuvable')
                 const action = { type: "LOGOUT", value: false }
                 this.props.dispatch(action)
-            }}
-        else
-        {
-            Alert.alert('Accès interdit', 'Utilisateur introuvable')
-            const action = { type: "LOGOUT", value: false }
-            this.props.dispatch(action)
+            }
         }
+    }
+
+    handleUsernameUpdate = username => {
+        this.setState({username})
+    }
+
+    handlePasswordUpdate = password => {
+        this.setState({password})
     }
 
     render(){
@@ -62,8 +72,7 @@ class LoginForm extends React.Component
                 <Text style={styles.textcontainer}>Scan Solutions</Text>
                 <TextInput 
                     value={this.state.username} 
-                    onChangeText={(username) => this.setState({ username })} 
-                    //onFocus={Keyboard.dismiss()}
+                    onChangeText={this.handleUsernameUpdate} 
                     style={styles.inputContainer} 
                     placeholder="Nom d'utilisateur"
                     autoFocus={true}
@@ -73,13 +82,13 @@ class LoginForm extends React.Component
                     />
                 <TextInput 
                     value={this.state.password} 
-                    onChangeText={(password) => this.setState({ password })} 
+                    onChangeText={this.handlePasswordUpdate} 
                     style={styles.inputContainer} 
                     placeholder='Mot de passe' 
                     secureTextEntry={true}
                     autoCapitalize='none'
                     ref={(input) => { this.secondTextInput = input }}
-                    onSubmitEditing={() => { if (this.state.username !== "" && this.state.password !== "") {this._login()} }}
+                    onSubmitEditing={() => { this._login() }}
                 />
                 <Button 
                     title={'Se connecter'} 
